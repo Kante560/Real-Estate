@@ -18,18 +18,39 @@ return () => {
   document.body.style.overflow ='auto'
 }
   },[showMobileMenu]);
+
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      // Change this value to trigger at a different scroll point
+      if (scrollTop > 20) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <div className=' top-0 left-0 w-full z-10 fixed  bg-linear-to-b from-gray-600 to-transparent '>
+      <div className={` top-0 left-0 w-full z-10 fixed  bg-linear-to-b from-gray-600 to-transparent ${scrolled ? "bg-gray-800 shadow-lg  text-white" : "bg-transparent text-white"}`}>
       <div className='container mx-auto flex justify-between items-center py-4 px-6 md:px-20 lg:px-32 bg-transparent'>
         <img  src={assets.logo} alt='Logo'/>
 
-        <ul className='hidden md:flex gap-7  text-gray-900'>
+        <ul className='hidden md:flex gap-7 '>
           <li><a href="#Header" className='cursor-pointer hover:text-gray-400'>Home</a></li>
           <li><a href="#About" className='cursor-pointer hover:text-gray-400'>About</a></li>
           <li><a href="#Projects" className='cursor-pointer hover:text-gray-400'>Projects</a></li>
           <li><a href="#Testimonials" className='cursor-pointer hover:text-gray-400'>Testimonials</a></li>
         </ul>
-        <button className='hidden md:block bg-white px-8 py-2 rounded-full cursor-pointer'>Sign up</button>
+        <button className={`hidden md:block px-8 py-2 rounded-full cursor-pointer  ${scrolled ? "bg-gray-800 shadow-lg" : "bg-gray-800 shadow-lg text-white"}`}>Sign up </button>
         { <img onClick={() => setshowMobileMenu(true)}   src={assets.menu_icon} className='md:hidden w-7 cursor-pointer' alt="" />}
       </div>
       {/* mobile menu */}

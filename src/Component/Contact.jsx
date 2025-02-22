@@ -34,10 +34,12 @@ const Contact = () => {
 
   return (    
     <motion.div
+
     initial={{opacity:0, x:-200}}
     transition={{duration:1,}}
     whileInView={{opacity:1, x:0}}
     viewport={{once:true}}
+    
       className="text-center p-6 py-20 lg:px-32 w-full overflow-hidden"
       id="Contact"
     >
@@ -52,11 +54,11 @@ const Contact = () => {
       </p>
 
       <form onSubmit={onSubmit} className="max-w-2xl mx-auto text-gray-600 pt-8 col-gap-1.5">
-        <div className="flex flex-wrap " >
+        <div className="flex justify-between items-center flex-col md:flex-row w-full md:space-x-6 space-y-6 md:space-y-0" >
           <div className="w-full md:w-1/2 text-left">
             Your Name
             <input
-              className="w-full border border-gray-300 rounded py-3 px-4 mt-2"
+              className="w-full border border-gray-300 rounded py-3 px-4"
               type="text"
               name="Name"
               placeholder="Your Name"
@@ -66,7 +68,7 @@ const Contact = () => {
           <div className="w-full md:w-1/2 text-left">
             Your Email
             <input
-              className="w-full border border-gray-300 rounded py-3 px-4 mt-2  "
+              className="w-full border border-gray-300 rounded py-3 px-4"
               type="email"
               name="Email"
               placeholder="Your Email"
